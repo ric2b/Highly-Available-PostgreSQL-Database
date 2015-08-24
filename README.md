@@ -2,14 +2,15 @@
 The aim of this project is to make a user transparent database system capable of losing at least one machine with minimal or zero downtime that also uses the redundant machines to improve performance. These objectives are limited to the local network, meaning that making the internet access redundant is beyond the scope of the project.
 
 # Project Goals
-- This
-- This
-- and that
+- No single points of failure
+- Automated failover (stand-by machines can take over the tasks of the failed machine)
+- Improved performance by using an Active/Active arquitecture (make stanby-machines useful)
+- Transparent to the client, it should't be any different to access than a simple one machine postgreSQL database
 
 # What I used, so you can avoid wasting time if you're using different software :)
 - On my PostgreSQL machines I used CentOS 6.5 and installed Postgres 9.4
 - For load balancing I used two machines with CentOS 7 and installed PgPool II 3.4.3
-
+- Automated failover is handled by ...
 
 # Repository Organization
 I'll try to make this as simple to browse and understand as possible, one folder for each machine, each with it's own configuration files and instructions.
