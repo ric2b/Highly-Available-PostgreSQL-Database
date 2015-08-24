@@ -6,7 +6,7 @@ The aim of this project is to make a user transparent database system capable of
 - This
 - and that
 
-# What I used, so you can avoid wasting time if you're using different versions or different software :)
+# What I used, so you can avoid wasting time if you're using different software :)
 - On my PostgreSQL machines I used CentOS 6.5 and installed Postgres 9.4
 - For load balancing I used two machines with CentOS 7 and installed PgPool II 3.4.3
 
