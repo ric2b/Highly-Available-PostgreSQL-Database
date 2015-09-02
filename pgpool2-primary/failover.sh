@@ -43,13 +43,13 @@ tmpfile=tmpfilerandomstufftomakesureimnotoverwritingyourfiles2JKHEGR7Q23
 
 echo "standby_mode=on" > $tmpfile 
 echo "trigger_file='/tmp/promotedb'" >> $tmpfile
-echo "primary_conninfo='host=$promotedServerIP port=$slave1Port user=replicador application_name=postgresql$(($reattachID+1))'" >> $tmpfile
+echo "primary_conninfo='host=$promotedServerIP port=$slave1Port user=replicador application_name=postgresql$reattachID'" >> $tmpfile
 echo "recovery_target_timeline='latest'" >> $tmpfile
 
 scp $tmpfile postgres@$redirectedServerIP:/var/lib/pgsql/9.4/data/recovery.conf
 ssh admra@$slave2IP "$redirectCommand"
 
 # the backend stuff is done, now we need to reattach the redirected server to the user facing pgpool
-echo "pcp_attach_node 10 localhost $pcpport $pcpuser $pcppass $reattachID"
+pcp_attach_node 10 localhost $pcpport $pcpuser $pcppass $reattachID
 
 rm $tmpfile
