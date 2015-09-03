@@ -18,6 +18,7 @@ pcpport="9898"
 pcpuser="postgres"
 pcppass="postgres"
 
+sshOptions="-o ConnectTimeout=5"  
 
 detachedNodeID=$1   # %d
 echo "detachedNodeID: $detachedNodeID"
@@ -38,7 +39,8 @@ fi
 
 echo "master went dark, execute failover protocol"
 
-ssh -t admra@$newMasterIP  "$promoteCommand"
+ssh -t $sshOptions admra@$newMasterIP  "$promoteCommand"
+# check if this fails
 
 tmpfile=hopeImNotOverwritingAnything
 function createRecovery.conf {
@@ -51,15 +53,15 @@ function createRecovery.conf {
 for nodeID in ${nodeIDs[@]}
 do
     if [[ $nodeID != $newMasterID && $nodeID != $detachedNodeID ]];then
-        echo "get to da file!"
         createRecovery.conf $nodeID
-        scp $tmpfile postgres@${nodeIPs[$nodeID]}:/var/lib/pgsql/9.4/data/recovery.conf
+        scp $sshOptions $tmpfile postgres@${nodeIPs[$nodeID]}:/var/lib/pgsql/9.4/data/recovery.conf
         rm $tmpfile
         echo "restart node $nodeID"
-        ssh -t admra@${nodeIPs[$nodeID]} "$redirectCommand"
+        ssh -t $sshOptions admra@${nodeIPs[$nodeID]} "$redirectCommand"
         echo "reattach node $nodeID"
         pcp_attach_node 10 localhost $pcpport $pcpuser $pcppass $newMasterID
     fi
 done
 
 echo "-----"
+exit 1
