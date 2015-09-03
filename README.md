@@ -8,9 +8,9 @@ The aim of this project is to make a user transparent database system capable of
 - Transparent to the client, it should't be any different to access than a simple one machine postgreSQL database
 
 # What I used, so you can avoid wasting time if you're using different software :)
-- On my PostgreSQL machines I used CentOS 6.5 and installed Postgres 9.4
-- For load balancing I used two machines with CentOS 7 and installed PgPool II 3.4.3
-- Automated failover is handled by ...
+- On my PostgreSQL machines I used both CentOS 6.5 and 7.1.1 with Postgresql 9.4.4
+- For load balancing I used two machines with CentOS 7.1.1 and installed PgPool II 3.4.3
+- Automated failover is handled by a custom script that PgPool II runs when a node goes down
 
 # Repository Organization
 I'll try to make this as simple to browse and understand as possible, one folder for each machine, each with it's own configuration files and instructions.
