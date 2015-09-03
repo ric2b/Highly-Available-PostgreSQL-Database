@@ -62,7 +62,4 @@ do
     fi
 done
 
-# attach new Master (maybe? so pgpool updates the role)
-# pcp_attach_node 10 localhost $pcpport $pcpuser $pcppass $newMasterID
-
 echo "-----"
