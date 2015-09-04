@@ -21,6 +21,6 @@ This means that there will be some redundancy in the information as some of the 
 
 # System Architecture
 
-![](https://github.com/ric2b/Highly-Available-Postgres-Database/docs/architecture.png)
+![](docs/architecture.png)
 
 # Relevant links
