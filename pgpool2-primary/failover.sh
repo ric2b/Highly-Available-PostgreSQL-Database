@@ -2,14 +2,22 @@
 
 # please enter your config stuff
 
-nodeIDs=( 0 1 2 )
-nodeIPs=(   
-            192.168.129.123 
-            192.168.129.143 
-            192.168.129.202 
+nodeIDs=( 0 1 2 3 )
+nodeIPs=(
+            192.168.129.123
+            192.168.129.143
+            192.168.129.202
+            192.168.129.245
         )
 
-nodePorts=( 5432 5432 5432 )
+nodePorts=( 5432 5432 5432 5432 )
+
+sudoUser="admra"
+postgresUser="postgres"
+
+dataFolder="/var/lib/pgsql/9.4/data/"
+
+#######################################################
 
 promoteCommand="touch /tmp/promotedb"
 redirectCommand="sudo service postgresql-9.4 restart"
@@ -18,7 +26,7 @@ pcpport="9898"
 pcpuser="postgres"
 pcppass="postgres"
 
-sshOptions="-o ConnectTimeout=5"  
+sshOptions="-o ConnectTimeout=5"
 
 detachedNodeID=$1   # %d
 echo "detachedNodeID: $detachedNodeID"
@@ -39,12 +47,12 @@ fi
 
 echo "master went dark, execute failover protocol"
 
-ssh -t $sshOptions admra@$newMasterIP  "$promoteCommand"
+ssh -t $sshOptions $sudoUser@$newMasterIP  "$promoteCommand"
 # check if this fails
 
 tmpfile=hopeImNotOverwritingAnything
 function createRecovery.conf {
-    echo "standby_mode=on" > $tmpfile 
+    echo "standby_mode=on" > $tmpfile
     echo "trigger_file='/tmp/promotedb'" >> $tmpfile
     echo "primary_conninfo='host=$newMasterIP port=$newMasterPort user=replicador application_name=postgresql$1'" >> $tmpfile
     echo "recovery_target_timeline='latest'" >> $tmpfile
@@ -54,10 +62,10 @@ for nodeID in ${nodeIDs[@]}
 do
     if [[ $nodeID != $newMasterID && $nodeID != $detachedNodeID ]];then
         createRecovery.conf $nodeID
-        scp $sshOptions $tmpfile postgres@${nodeIPs[$nodeID]}:/var/lib/pgsql/9.4/data/recovery.conf
+        scp $sshOptions $tmpfile $postgresUser@${nodeIPs[$nodeID]}:"$dataFolder"recovery.conf
         rm $tmpfile
         echo "restart node $nodeID"
-        ssh -t $sshOptions admra@${nodeIPs[$nodeID]} "$redirectCommand"
+        ssh -t $sshOptions $sudoUser@${nodeIPs[$nodeID]} "$redirectCommand"
         echo "reattach node $nodeID"
         pcp_attach_node 10 localhost $pcpport $pcpuser $pcppass $newMasterID
     fi
