@@ -15,16 +15,23 @@ nodePorts=( 5432 5432 5432 5432 )
 sudoUser="admra"
 postgresUser="postgres"
 
-dataFolder="/var/lib/pgsql/9.4/data/"
-
-#######################################################
-
-promoteCommand="touch /tmp/promotedb"
-redirectCommand="sudo service postgresql-9.4 restart"
-
 pcpport="9898"
 pcpuser="postgres"
 pcppass="postgres"
+
+dataFolder="/var/lib/pgsql/9.4/data/"
+
+### If you want to setup a warning just enter it in the function below ###
+function warnMe {
+    # you get a short message with the relevant details on $1
+    # (the argument 1)
+    echo "warnMe isn't configured on failover.sh"
+}
+
+### You probably don't neet to worry about the rest ###
+
+promoteCommand="touch /tmp/promotedb"
+redirectCommand="sudo service postgresql-9.4 restart"
 
 sshOptions="-o ConnectTimeout=5"
 
@@ -42,13 +49,13 @@ echo "newMasterPort: $newMasterPort"
 
 if [[ $detachedNodeID != $oldMasterID ]]; then
     echo "a slave went dark, do nothing"
+    warnMe "Slave "$1" on "$2" was detached from PgPool"
     exit 0
 fi
 
 echo "master went dark, execute failover protocol"
 
 ssh -t $sshOptions $sudoUser@$newMasterIP  "$promoteCommand"
-# check if this fails
 
 tmpfile=hopeImNotOverwritingAnything
 function createRecovery.conf {
@@ -70,6 +77,8 @@ do
         pcp_attach_node 10 localhost $pcpport $pcpuser $pcppass $newMasterID
     fi
 done
+
+warnMe "The Master (ID: "$1" IP: "$2") was detached from PgPool, failed over to node "$6"
 
 echo "-----"
 exit 1
