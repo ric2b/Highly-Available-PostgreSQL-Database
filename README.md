@@ -1,5 +1,5 @@
 # Project Description
-This project is the main objective of my 7 week internship at [![Multicert](docs/images/logo_multicert.png)](https://www.multicert.com/pt/).
+This project is the main objective of my 7 week internship at [multicert](https://www.multicert.com/pt/).
 
 The aim of the project is to make a client transparent high availability postgreSQL database system capable of losing at least one machine with minimal or zero downtime that also uses the redundant machines to improve performance. These objectives are limited to the local network, meaning that making the internet access redundant is beyond the scope of the project.
 
