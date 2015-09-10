@@ -16,7 +16,7 @@ The aim of the project is to make a client transparent high availability postgre
 - Automated failover is handled by a custom script that PgPool II runs when a node goes down
 
 # Repository Organization
-I made quite an extensive wiki for the project, check it out and give some feedback if possible :)
+I made quite an extensive [wiki for the project](../../wiki), check it out and give some feedback if possible :)
 
 For the repo itself I'll try to make this as simple to browse and understand as possible, one folder for each machine (I only have on folder for slaves), each with it's own configuration files and instructions.
 This means that there will be some redundancy in the information as some of the configurations are the same for more than one machine but it'll hopefully make it easier to follow.
