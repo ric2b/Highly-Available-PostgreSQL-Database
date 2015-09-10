@@ -28,5 +28,3 @@ This means that there will be some redundancy in the information as some of the 
 
 # Bugs and Feedback
 Please use [GitHub Issues](https://github.com/ric2b/Highly-Available-Postgres-Database/issues)
-
-[![multicert](docs/images/logo_multicert.png)](https://www.multicert.com/pt/)
