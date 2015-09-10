@@ -1,6 +1,8 @@
 # Project Description
 This project is the main objective of my 7 week internship at [Multicert](http://www.multicert.com).
 
+[![](https://github.com/ric2b/Highly-Available-PostgreSQL-Database/wiki/images/logo_multicert.png)](https://www.multicert.com/pt/)
+
 The aim of the project is to make a client transparent high availability postgreSQL database system capable of losing at least one machine with minimal or zero downtime that also uses the redundant machines to improve performance. These objectives are limited to the local network, meaning that making the internet access redundant is beyond the scope of the project.
 
 # Project Goals
@@ -24,6 +26,7 @@ This means that there will be some redundancy in the information as some of the 
 ![](docs/architecture.png)
 
 # Relevant links
+[On the project wiki](https://github.com/ric2b/Highly-Available-PostgreSQL-Database/wiki/References)
 
 # Bugs and Feedback
 Please use [GitHub Issues](https://github.com/ric2b/Highly-Available-Postgres-Database/issues)
