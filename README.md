@@ -1,7 +1,7 @@
 # Project Description
 This project is the main objective of my 7 week internship at [Multicert](http://www.multicert.com).
 
-The aim of the project is to make a user transparent database system capable of losing at least one machine with minimal or zero downtime that also uses the redundant machines to improve performance. These objectives are limited to the local network, meaning that making the internet access redundant is beyond the scope of the project.
+The aim of the project is to make a client transparent SQL database system capable of losing at least one machine with minimal or zero downtime that also uses the redundant machines to improve performance. These objectives are limited to the local network, meaning that making the internet access redundant is beyond the scope of the project.
 
 # Project Goals
 - No single points of failure
