@@ -13,7 +13,7 @@ nodeIPs=(
 nodePorts=( 5432 5432 5432 5432 )
 
 sudoUser="admra" # must have sudo access, to reboot the services
-postgresUser="postgres"
+postgresUser="postgres" # must own the postgresql data folder
 
 pcpport="9898"
 pcpuser="postgres"
@@ -79,6 +79,5 @@ do
 done
 
 warnMe "The Master (ID: "$1" IP: "$2") was detached from PgPool, failed over to node "$6" IP:"$7""
-
 echo "-----"
 exit 1
