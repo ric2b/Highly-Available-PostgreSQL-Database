@@ -78,7 +78,6 @@ do
     fi
 done
 
-warnMe "The Master (ID: "$1" IP: "$2") was detached from PgPool, failed over to node "$6"
-
+warnMe "The Master (ID: "$1" IP: "$2") was detached from PgPool, failed over to node "$6" IP:"$7""
 echo "-----"
 exit 1
