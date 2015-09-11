@@ -2,7 +2,7 @@
 
 The difference between the master and the slaves is pretty much only the **recovery.conf** file. It can't exist on the master, or it will start in stanby mode. Other than that you might want some slight differences on what connections you allow (which you change on the **pg_hba.conf** file) from each machine.
 
-Refer to the [project wiki](wiki/) if you're a bit lost.
+Refer to the [project wiki](../../../wiki) if you're a bit lost.
 
 ## What you probably need to change
 
