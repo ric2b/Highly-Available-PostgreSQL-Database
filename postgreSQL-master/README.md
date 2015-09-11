@@ -6,14 +6,16 @@ Refer to the [project wiki](wiki/) if you're a bit lost.
 
 ## What you probably need to change
 
+Go through the [database initiation process](wiki/PostgreSQL-Master-Configuration#starting-a-server-as-a-master) before copying the files.
+
+All these files go in the PostgreSQL data folder: `var/lib/pgsql/9.4/data`
+
 ### pg_hba.conf
-- location: PostgreSQL data folder
 
 You need to add rules for at least all the slaves and load balancers. Add whole subnets to make it simpler, if you can.
 The file itself has quite a bit of documentation that you can read if confused, or you can also go to the [official documentation page](http://www.postgresql.org/docs/9.4/static/auth-pg-hba-conf.html)
 
 ### postgresql.conf
-- location: PostgreSQL data folder
 
 change `max_wal_senders = 4` if you need more than 4 Slave servers.
 

@@ -12,7 +12,7 @@ nodeIPs=(
 
 nodePorts=( 5432 5432 5432 5432 )
 
-sudoUser="admra"
+sudoUser="admra" # must have sudo access, to reboot the services
 postgresUser="postgres"
 
 pcpport="9898"
