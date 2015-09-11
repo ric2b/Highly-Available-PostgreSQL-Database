@@ -2,7 +2,7 @@
 
 The Slave servers are set up identically to the Master except you need to add a **recovery.conf** file. Other than that you might want some slight differences on what connections you allow (which you change on the **pg_hba.conf** file) from each machine.
 
-Refer to the [project wiki](wiki/) if you're a bit lost.
+Refer to the [project wiki](../../../wiki) if you're a bit lost.
 
 ## What you probably need to change
 
