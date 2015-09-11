@@ -2,7 +2,7 @@
 
 The configuration files are pretty much the same for both servers except for the watchdog feature related ones, which must have each other's IP addresses.
 
-If you feel a bit lost, check the [project wiki](/wiki)
+If you feel a bit lost, check the [project wiki](../../../wiki)
 
 ## What you need to change
 
